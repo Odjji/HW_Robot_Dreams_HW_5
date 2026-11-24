@@ -1,0 +1,15 @@
+#!/bin/sh
+# Git Pre-commit Hook
+echo "=== Running pre-commit checks ==="
+
+# 1. Запуск тестів
+if [ -f "build/unit_test" ]; then
+    ./build/unit_test
+    if [ $? -ne 0 ]; then
+        echo "Error: Tests failed! Commit aborted."
+        exit 1
+    fi
+fi
+
+echo "=== All pre-commit checks passed! ==="
+exit 0
